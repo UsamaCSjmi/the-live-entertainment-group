@@ -29,7 +29,7 @@ class Format
     public function slugify($str)
     {
         $slug = strtolower($str);
-        $slug = str_replace(" ","-",$str);
+        $slug = str_replace(" ","-",$slug);
         return $slug;
     }
 
@@ -71,6 +71,16 @@ class Format
             return false;
         }
     }
+
+    public static function getAdminPage(){
+        define("ADMIN_BASE_PATH",BASE_PATH."admin/");
+        $url = str_replace(ADMIN_BASE_PATH,"",$_SERVER['REQUEST_URI']);
+        $page = explode("?",$url)[0];
+        $page = explode(".",$page)[0];
+        return $page;
+    }
+
+
     public static function getSubCategoryFromURL(){
         $router = Format::getRouter();
         if(sizeof($router)<=3 && sizeof($router)>1){

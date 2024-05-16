@@ -1,7 +1,7 @@
 <?php 
 $filepath = realpath(dirname(__FILE__));
 include($filepath.'/../lib/Session.php');
-Session::checkLogin();
+Session::checkAdminLogin();
 include_once($filepath.'/../lib/Database.php');
 include_once($filepath.'/../helpers/Format.php');
 
@@ -22,23 +22,25 @@ class AdminAuth
         $adminPass = $this->fm->validation($adminPass);
         $adminUser = mysqli_real_escape_string($this->db->link, $adminUser);
         $adminPass = mysqli_real_escape_string($this->db->link, $adminPass);
-
         if (empty($adminUser) || empty($adminPass)) {
             $loginmsg = "Username or Password must not be empty!";
             return $loginmsg;
         } else {
-            $query = "SELECT * FROM tbl_admin WHERE adminUser = '$adminUser' AND adminPass = '$adminPass'";
+            $adminPass = md5($adminPass);
+            $query = "SELECT * FROM admin_user WHERE (email = '$adminUser' OR username = '$adminUser') AND password = '$adminPass'";
             $result = $this->db->select($query);
             if ($result != false) {
                 $value = $result->fetch_assoc();
-                Session::set("adminlogin", true);
-                Session::set("adminId", $value['adminId']);
-                Session::set("adminUser", $value['adminUser']);
-                Session::set("adminName", $value['adminName']);
-                Session::set("lavel", $value['lavel']);
-                header("Location:dashboard.php");
+                Session::set("adminLogin", true);
+                Session::set("adminId", $value['id']);
+                Session::set("adminUsername", $value['username']);
+                Session::set("adminName", $value['name']);
+                Session::set("adminEmail", $value['email']);
+                Session::set("adminLastLogin", $value['last_logged_in']);
+                // header("Location:dashboard.php");
+                return "success";
             } else {
-                $loginmsg = "Username or Password not match!";
+                $loginmsg = "Invalid Credentials!";
                 return $loginmsg;
             }
         }

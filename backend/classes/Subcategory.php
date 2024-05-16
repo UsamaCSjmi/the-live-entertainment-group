@@ -15,27 +15,47 @@ class Subcategory
         $this->fm = new Format();
     }
 
-    public function subcatInsert($subcatName,$catId)
+    public function subcatInsert($subcatName,$subcatSlug,$catId)
     {
         $subcatName = $this->fm->validation($subcatName);
         $subcatName = mysqli_real_escape_string($this->db->link, $subcatName);
-        $slug = $this->fm->slugify($subcatName);
         $catId = $this->fm->validation($catId);
         $catId = mysqli_real_escape_string($this->db->link, $catId);
+        $subcatSlug = $this->fm->validation($subcatSlug);
+        $subcatSlug = mysqli_real_escape_string($this->db->link, $subcatSlug);
+        if($subcatSlug==""){
+            $slug = $this->fm->slugify($subcatName);
+        }
+        else{
+            $slug = $subcatSlug;
+        }
         if (empty($subcatName)) {
-            $msg = "<span class='error'>Category field must not be empty!</span>";
+            $msg = "Sub-Category Name field must not be empty!";
             return $msg;
         } else {
-            $query = "INSERT INTO subcategory(category,name,slug) VALUES($catId,'$subcatName',$slug)";
-            $catinsert = $this->db->insert($query);
-            if ($catinsert) {
-                $msg = "<span class='success'>Sub Category Inserted Successfully</span>";
-                return $msg;
-            } else {
-                $msg = "<span class='error'>Sub Category Not Inserted.</span>";
+            try{
+                $query = "INSERT INTO subcategory(category,name,slug) VALUES($catId,'$subcatName','$slug')";
+                $catinsert = $this->db->insert($query);
+                if ($catinsert) {
+                    $msg = true;
+                    return $msg;
+                } else {
+                    $msg = "Sub Category Not Inserted.";
+                    return $msg;
+                }
+            }
+            catch(Exception $e){
+                $msg = "Try Different Sub-Category Name or Slug";
                 return $msg;
             }
         }
+    }
+
+    public function getAllSubcategories()
+    {
+        $query = "SELECT * FROM subcategory ORDER BY name ASC";
+        $result = $this->db->select($query);
+        return $result;
     }
 
     public function getAllActiveSubcategories()
@@ -49,7 +69,7 @@ class Subcategory
     {
         $query = "SELECT * FROM subcategory WHERE id = '$id'";
         $result = $this->db->select($query);
-        return $result;
+        return mysqli_fetch_array($result);
     }
 
     public function getSubcatByCatId($catid)
@@ -66,39 +86,83 @@ class Subcategory
         return $result;
     }
 
-    public function subcatUpdate($catName, $catid)
+    public function subcatUpdate($subcatName, $subcatid,$subcatSlug,$catId)
     {
-        $catName = $this->fm->validation($catName);
-        $catName = mysqli_real_escape_string($this->db->link, $catName);
-        $catid = mysqli_real_escape_string($this->db->link, $catid);
-        if (empty($catName)) {
-            $msg = "<span class='error'>Category field must not be empty!</span>";
+        $subcatid = $this->fm->validation($subcatid);
+        $subcatid = mysqli_real_escape_string($this->db->link, $subcatid);
+        $subcatName = $this->fm->validation($subcatName);
+        $subcatName = mysqli_real_escape_string($this->db->link, $subcatName);
+        $catId = $this->fm->validation($catId);
+        $catId = mysqli_real_escape_string($this->db->link, $catId);
+        $subcatSlug = $this->fm->validation($subcatSlug);
+        $subcatSlug = mysqli_real_escape_string($this->db->link, $subcatSlug);
+        if($subcatSlug==""){
+            $slug = $this->fm->slugify($subcatName);
+        }
+        else{
+            $slug = $subcatSlug;
+        }
+        if (empty($subcatName)) {
+            $msg = "Category field must not be empty!";
             return $msg;
         } else {
-            $query = "UPDATE sub_categories
-        	SET
-        	sub_categories = '$catName'
-        	WHERE id = '$catid'";
-            $updated_row = $this->db->update($query);
-            if ($updated_row) {
-                $msg = "<span class='success'>Category Updated Successfully</span>";
-                return $msg;
-            } else {
-                $msg = "<span class='error'>Category Not Updated.</span>";
+            try{
+                $query = "UPDATE subcategory
+                SET
+                name = '$subcatName',
+                slug = '$slug',
+                category = $catId
+                WHERE id = $subcatid";
+                $updated_row = $this->db->update($query);
+                if ($updated_row) {
+                    $msg = true;
+                    return $msg;
+                } else {
+                    $msg = "Category Not Updated.";
+                    return $msg;
+                }
+            }
+            catch(Exception $e){
+                $msg = "Try Different Sub-Category Name or Slug";
                 return $msg;
             }
         }
     }
+
+    public function updateStatus($subcatId, $is_active){
+        $subcatId = $this->fm->validation($subcatId);
+        $subcatId = mysqli_real_escape_string($this->db->link, $subcatId);
+        $is_active = $this->fm->validation($is_active);
+        $is_active = mysqli_real_escape_string($this->db->link, $is_active);
+        if (empty($subcatId)) {
+            $msg = "Sub-Category ID field must not be empty!";
+            return $msg;
+        } else {
+            $query = "UPDATE subcategory
+        	SET
+        	is_active = '$is_active'
+        	WHERE id = '$subcatId'";
+            $updated_row = $this->db->update($query);
+            if ($updated_row) {
+                $msg = true;
+                return $msg;
+            } else {
+                $msg = "Status Update failed.";
+                return $msg;
+            }
+        }
+    }
+
     public function delSubCatById($id)
     {
         $id = mysqli_real_escape_string($this->db->link, $id);
         $query = "DELETE FROM subcategory WHERE id = '$id'";
         $deldata = $this->db->delete($query);
         if ($deldata) {
-            $msg = "<span class='success'>Sub Category Deleted Successfully</span>";
+            $msg = true;
             return $msg;
         } else {
-            $msg = "<span class='error'Sub Category Not Deleted!</span>";
+            $msg = "Sub Category Not Deleted!";
             return $msg;
         }
     }
