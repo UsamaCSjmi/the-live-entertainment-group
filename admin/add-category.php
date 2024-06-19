@@ -3,7 +3,7 @@ include_once("./includes/header.php");
 include_once("./includes/navigation.php");
 $message="";
 if(isset($_POST['add-category'])){
-    $add = $categoryObj->catInsert($_POST['name'],$_POST['slug']);
+    $add = $categoryObj->catInsert($_POST['name'],$_POST['slug'],$_POST['title'],$_POST['description'],$_POST['content']);
     if($add === true){
         ?>
         <script>
@@ -16,7 +16,7 @@ if(isset($_POST['add-category'])){
     }
 }
 elseif(isset($_POST['edit-category'])){
-    $edit = $categoryObj->categoryUpdate($_POST['name'],$_POST['slug'],$_POST['id']);
+    $edit = $categoryObj->categoryUpdate($_POST['name'],$_POST['slug'],$_POST['id'],$_POST['title'],$_POST['description'],$_POST['content']);
     if($edit === true){
         ?>
         <script>
@@ -83,13 +83,49 @@ if (isset($_GET['category']) && $_GET['category'] != "") {
                                 placeholder="Category Slug" />
                             </div>
                         </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="title">Meta Title</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="title" id="title" 
+                                <?php
+                                if($mode == "edit"){
+                                    ?>
+                                    value="<?php echo $category['title']?>"
+                                    <?php
+                                }
+                                ?>
+                                placeholder="Meta Title" />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="description">Meta Description</label>
+                            <div class="col-sm-10">
+                                <textarea name="description" class="form-control" id="description" rows="3"><?php
+                                if($mode == "edit"){
+                                     echo $category['description'];
+                                }
+                                ?></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="content">Content</label>
+                            <div class="col-sm-10">
+                                <textarea name="content" id="editor" rows="30">
+                                <?php
+                                if($mode == "edit"){
+                                     echo $category['content'];
+                                }
+                                ?>
+                                </textarea>
+                            </div>
+                        </div>
                         <div class="row justify-content-end">
                             <div class="col-sm-10">
                                 <?php
                                 if($mode=="edit"){
                                     ?>
                                     <input type="hidden" name="id" value="<?php echo $category['id']?>">
-                                <button type="submit" name="edit-category"class="btn btn-primary">Edit</button>
+                                <button type="submit" name="edit-category"class="btn btn-primary">Update</button>
                                     <?php
                                 }
                                 else{
@@ -111,6 +147,7 @@ if (isset($_GET['category']) && $_GET['category'] != "") {
 </div>
 <!-- / Content -->
 <?php
+$editor = true;
 include_once("./includes/footer-layout.php");
 include_once("./includes/footer.php");
 ?>

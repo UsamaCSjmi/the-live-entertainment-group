@@ -15,12 +15,18 @@ class Category
         $this->fm = new Format();
     }
     
-    public function catInsert($catName,$catSlug)
+    public function catInsert($catName,$catSlug,$title,$description,$content)
     {
         $catName = $this->fm->validation($catName);
         $catName = mysqli_real_escape_string($this->db->link, $catName);
         $catSlug = $this->fm->validation($catSlug);
         $catSlug = mysqli_real_escape_string($this->db->link, $catSlug);
+        $title = $this->fm->validation($title);
+        $title = mysqli_real_escape_string($this->db->link, $title);
+        $description = $this->fm->validation($description);
+        $description = mysqli_real_escape_string($this->db->link, $description);
+        $content = $this->fm->validation($content);
+        $content = mysqli_real_escape_string($this->db->link, $content);
         if($catSlug==""){
             $slug = $this->fm->slugify($catName);
         }
@@ -32,7 +38,7 @@ class Category
             return $msg;
         } else {
             try{
-                $query = "INSERT INTO category(name,slug) VALUES('$catName','$slug')";
+                $query = "INSERT INTO category(name,slug,title,description,content) VALUES('$catName','$slug','$title','$description','$content')";
                 $catinsert = $this->db->insert($query);
                 if ($catinsert) {
                     $msg = true;
@@ -109,7 +115,7 @@ class Category
         return $result;
     }
 
-    public function categoryUpdate($catName, $catSlug, $catid)
+    public function categoryUpdate($catName, $catSlug, $catid,$title,$description,$content)
     {
         $catName = $this->fm->validation($catName);
         $catName = mysqli_real_escape_string($this->db->link, $catName);
@@ -117,6 +123,12 @@ class Category
         $catid = mysqli_real_escape_string($this->db->link, $catid);
         $catSlug = $this->fm->validation($catSlug);
         $catSlug = mysqli_real_escape_string($this->db->link, $catSlug);
+        $title = $this->fm->validation($title);
+        $title = mysqli_real_escape_string($this->db->link, $title);
+        $description = $this->fm->validation($description);
+        $description = mysqli_real_escape_string($this->db->link, $description);
+        $content = $this->fm->validation($content);
+        $content = mysqli_real_escape_string($this->db->link, $content);
         if($catSlug==""){
             $slug = $this->fm->slugify($catName);
         }
@@ -131,7 +143,10 @@ class Category
                 $query = "UPDATE category
                 SET
                 name = '$catName',
-                slug = '$catSlug'
+                slug = '$catSlug',
+                title='$title',
+                description='$description',
+                content='$content'
                 WHERE id = '$catid'";
                 $updated_row = $this->db->update($query);
                 if ($updated_row) {

@@ -3,7 +3,7 @@ include_once("./includes/header.php");
 include_once("./includes/navigation.php");
 $message="";
 if(isset($_POST['add-sub-category'])){
-    $add = $subcategoryObj->subcatInsert($_POST['name'],$_POST['slug'],$_POST['category']);
+    $add = $subcategoryObj->subcatInsert($_POST['name'],$_POST['slug'],$_POST['category'],$_POST['title'],$_POST['description'],$_POST['content']);
     if($add === true){
         ?>
         <script>
@@ -16,7 +16,7 @@ if(isset($_POST['add-sub-category'])){
     }
 }
 elseif(isset($_POST['edit-sub-category'])){
-    $edit = $subcategoryObj->subcatUpdate($_POST['name'],$_POST['id'],$_POST['slug'],$_POST['category']);
+    $edit = $subcategoryObj->subcatUpdate($_POST['name'],$_POST['id'],$_POST['slug'],$_POST['category'],$_POST['title'],$_POST['description'],$_POST['content']);
     if($edit === true){
         ?>
         <script>
@@ -105,6 +105,42 @@ if (isset($_GET['sub-category']) && $_GET['sub-category'] != "") {
                                 placeholder="Sub-Category Slug" />
                             </div>
                         </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="title">Meta Title</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="title" id="title" 
+                                <?php
+                                if($mode == "edit"){
+                                    ?>
+                                    value="<?php echo $subcategory['title']?>"
+                                    <?php
+                                }
+                                ?>
+                                placeholder="Meta Title" />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="description">Meta Description</label>
+                            <div class="col-sm-10">
+                                <textarea name="description" class="form-control" id="description" rows="3"><?php
+                                if($mode == "edit"){
+                                     echo $subcategory['description'];
+                                }
+                                ?></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="content">Content</label>
+                            <div class="col-sm-10">
+                                <textarea name="content" id="editor" rows="30">
+                                <?php
+                                if($mode == "edit"){
+                                    echo $subcategory['content'];
+                                }
+                                ?>
+                                </textarea>
+                            </div>
+                        </div>
                         <div class="row justify-content-end">
                             <div class="col-sm-10">
                                 <?php
@@ -133,6 +169,7 @@ if (isset($_GET['sub-category']) && $_GET['sub-category'] != "") {
 </div>
 <!-- / Content -->
 <?php
+$editor = true;
 include_once("./includes/footer-layout.php");
 include_once("./includes/footer.php");
 ?>

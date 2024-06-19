@@ -15,7 +15,7 @@ class Subcategory
         $this->fm = new Format();
     }
 
-    public function subcatInsert($subcatName,$subcatSlug,$catId)
+    public function subcatInsert($subcatName,$subcatSlug,$catId,$title,$description,$content)
     {
         $subcatName = $this->fm->validation($subcatName);
         $subcatName = mysqli_real_escape_string($this->db->link, $subcatName);
@@ -23,6 +23,12 @@ class Subcategory
         $catId = mysqli_real_escape_string($this->db->link, $catId);
         $subcatSlug = $this->fm->validation($subcatSlug);
         $subcatSlug = mysqli_real_escape_string($this->db->link, $subcatSlug);
+        $title = $this->fm->validation($title);
+        $title = mysqli_real_escape_string($this->db->link, $title);
+        $description = $this->fm->validation($description);
+        $description = mysqli_real_escape_string($this->db->link, $description);
+        $content = $this->fm->validation($content);
+        $content = mysqli_real_escape_string($this->db->link, $content);
         if($subcatSlug==""){
             $slug = $this->fm->slugify($subcatName);
         }
@@ -34,7 +40,7 @@ class Subcategory
             return $msg;
         } else {
             try{
-                $query = "INSERT INTO subcategory(category,name,slug) VALUES($catId,'$subcatName','$slug')";
+                $query = "INSERT INTO subcategory(category,name,slug,title,description,content) VALUES($catId,'$subcatName','$slug','$title','$description','$content')";
                 $catinsert = $this->db->insert($query);
                 if ($catinsert) {
                     $msg = true;
@@ -86,7 +92,7 @@ class Subcategory
         return $result;
     }
 
-    public function subcatUpdate($subcatName, $subcatid,$subcatSlug,$catId)
+    public function subcatUpdate($subcatName, $subcatid,$subcatSlug,$catId,$title,$description,$content)
     {
         $subcatid = $this->fm->validation($subcatid);
         $subcatid = mysqli_real_escape_string($this->db->link, $subcatid);
@@ -96,6 +102,12 @@ class Subcategory
         $catId = mysqli_real_escape_string($this->db->link, $catId);
         $subcatSlug = $this->fm->validation($subcatSlug);
         $subcatSlug = mysqli_real_escape_string($this->db->link, $subcatSlug);
+        $title = $this->fm->validation($title);
+        $title = mysqli_real_escape_string($this->db->link, $title);
+        $description = $this->fm->validation($description);
+        $description = mysqli_real_escape_string($this->db->link, $description);
+        $content = $this->fm->validation($content);
+        $content = mysqli_real_escape_string($this->db->link, $content);
         if($subcatSlug==""){
             $slug = $this->fm->slugify($subcatName);
         }
@@ -111,7 +123,10 @@ class Subcategory
                 SET
                 name = '$subcatName',
                 slug = '$slug',
-                category = $catId
+                category = $catId,
+                title='$title',
+                description='$description',
+                content='$content'
                 WHERE id = $subcatid";
                 $updated_row = $this->db->update($query);
                 if ($updated_row) {

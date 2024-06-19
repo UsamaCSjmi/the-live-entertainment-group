@@ -1,0 +1,33 @@
+Old Tables : 
+categories, subcategories, profile, service_provider_types
+
+URLs
+Category -- domain/{Category-slug}
+removed -- (Sub-category -- domain/{sub-category-slug})
+Profile -- domain/{profile-slug}
+Blogs Home -- domain/blogs
+Blogs -- domain/blogs/{blog-slug}
+
+Database:
+Table Page_types (For category, (sub-categories,) profile, blog):
+    id - int
+    type - string
+
+Table Pages :
+    id - int 
+    slug - string - unique
+    name - string
+    title - string 
+    description - string
+    content - text
+    type_id - int - referencing key (page_type)
+    is_active - enum(0,1)
+    added_on - Datetime - Default(currenttimestamp)
+
+Table parent_child_relation
+    parent - int - foreign key (pages.id)
+    child - int - foreign key (pages.id)
+    primary key (parent,child)
+
+
+**one profile can exists in multiple categories
