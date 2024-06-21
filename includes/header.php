@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="robots" content="noindex,nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $title?></title>
-    <link rel="shortcut icon" href="<?php echo SITE_PATH?>assets/images/logo-icon.jpeg" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php echo SITE_PATH?>assets/images/leg-favicon.png" type="image/x-icon">
     <meta name="description" content="<?php echo $description?>">
     <!-- External CSS Libraries -->
     <link rel="stylesheet" href="<?php echo SITE_PATH?>assets/fontawesome/css/all.min.css">
@@ -19,7 +20,7 @@
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="<?php echo SITE_PATH?>">
-                    <img src="<?php echo SITE_PATH?>assets/images/logo.jpeg" alt="Live Entertainment Group" width="250" class="img-fluid">
+                    <img src="<?php echo SITE_PATH?>assets/images/leg-logo.png" alt="Live Entertainment Group" width="250" class="img-fluid">
                 </a>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">

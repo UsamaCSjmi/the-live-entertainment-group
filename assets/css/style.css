@@ -3,13 +3,38 @@
     --theme-dark-color:#474747;
     --theme-border-radius:0 0 0 15px;
 }
+@font-face {
+    font-family: Recoleta;
+    src: url(../fonts/Recoleta-Font-Family/Recoleta-Font-Family/Recoleta-Bold.ttf);
+    font-weight: bold;
+}
+@font-face {
+    font-family: Recoleta;
+    src: url(../fonts/Recoleta-Font-Family/Recoleta-Font-Family/Recoleta-Black.ttf);
+    font-weight:bolder;
+}
+@font-face {
+    font-family: Recoleta;
+    src: url(../fonts/Recoleta-Font-Family/Recoleta-Font-Family/Recoleta-Regular.ttf);
+    font-weight: normal;
+}
+@font-face {
+    font-family: RecoletaAlt;
+    src: url(../fonts/Recoleta-Font-Family/Recoleta-Font-Family/RecoletaAlt-Regular.ttf);
+    font-weight:normal;
+}
 *{
     margin: 0;
     padding: 0;
     transition: all 0.5s ease;
+    font-family: Recoleta;
+    font-weight: normal;
 }
 body{
     box-sizing: border-box;
+}
+.row {
+    /* --bs-gutter-x: 0; */
 }
 .hero{
     background: url(../images/background.jpeg),#00000087;

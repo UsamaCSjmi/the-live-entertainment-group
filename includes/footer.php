@@ -83,7 +83,7 @@
                 <div class="row mt-2 justify-content-between">
                     <div class="col-lg-5">
                         <a class="navbar-brand float-left" href="<?php echo SITE_PATH?>">
-                            <img src="<?php echo SITE_PATH?>assets/images/logo.jpeg" alt="Live Entertainment Group" width="250" class="img-fluid">
+                            <img src="<?php echo SITE_PATH?>assets/images/leg-logo.png" alt="Live Entertainment Group" width="250" class="img-fluid">
                         </a>
                     </div>
                     <div class="col-lg-2">
