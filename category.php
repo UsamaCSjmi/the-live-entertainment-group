@@ -1,10 +1,13 @@
 <?php 
 include_once("includes/header.php");
-echo "Category : ".$pageCategory['name']; 
-?>
-<div class="content">
-    <?php echo htmlspecialchars_decode($pageCategory['content'])?>
-</div>
-<?php
+include("includes/_breadcrumbs.php");
+include("includes/_hero.php");
+include("includes/_category-cards.php");
+include("includes/_faqs.php");
+include("includes/_blogs.php");
+include("includes/_featured-video-image.php");
+include("includes/_artists-cards.php");
+include("includes/_blogs.php");
+include("includes/_why-chose-leg.php");
 include_once("includes/footer.php");
 ?>

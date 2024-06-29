@@ -1,11 +1,14 @@
 <?php 
 include_once("includes/header.php");
-echo "Category : ".$pageCategory['name']."<br>";
-echo "Sub Category : ".$pageSubcategory['name'];
+include("includes/_breadcrumbs.php");
+include("includes/_hero.php");
+include("includes/_artists-cards.php");
+include("includes/_genres.php");
+include("includes/_why-chose-leg.php");
+include("includes/_blogs.php");
+include("includes/_faqs.php");
+include("includes/_find-local.php");
 ?>
-<div class="content">
-    <?php echo htmlspecialchars_decode($pageSubcategory['content'])?>
-</div>
 <?php
 include_once("includes/footer.php");
 ?>

@@ -1,6 +1,6 @@
     <!-- Footer Start -->
-    <div class="container-fluid bg-light text-dark footer mt-5 pt-5 pb-5 border-top-colored">
-        <div class="container py-0">
+    <div class="container-fluid text-dark footer mt-5 pt-0 pb-5 ">
+        <div class="container py-5 border-top-dark border-bottom-dark">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6 mt-2 mt-lg-5">
                     <h4 class="text-dark mb-1">Browse by location</h4>
@@ -78,7 +78,7 @@
                 </div>
             </div>
         </div>
-        <div class="container">
+        <div class="container py-5">
             <div class="copyright">
                 <div class="row mt-2 justify-content-between">
                     <div class="col-lg-5">
