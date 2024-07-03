@@ -1,5 +1,6 @@
 :root{
     --theme-primary-color:#30706A;
+    --theme-primary-hover-color : #1e514c;
     --theme-dark-color:#474747;
     --theme-border-radius:0 0 0 15px;
 }
@@ -103,8 +104,8 @@ h1,h2,h3,.h1,.h2,.h3{
     border-radius: var(--theme-border-radius);
 }
 .btn-primary:hover{
-    background: var(--theme-dark-color);
-    border: 1px solid var(--theme-dark-color);
+    background: var(--theme-primary-hover-color)!important;
+    border: 1px solid var(--theme-primary-hover-color)!important;
 }
 .card{
     --bs-card-border-radius: 1.375rem;
@@ -193,6 +194,9 @@ h1,h2,h3,.h1,.h2,.h3{
 .bg-primary{
     background-color: var(--theme-primary-color)!important;
 }
+.bg-primary:hover{
+    background-color: var(--theme-primary-hover-color)!important;
+}
 .bg-white{
     background-color: #ffffff!important;
 }
@@ -207,17 +211,17 @@ h1,h2,h3,.h1,.h2,.h3{
     color: gray;
 }
 .footer .nav-link{
-    color: #00000087;
+    color: #333333;
     padding-left: 0;
     padding-right: 0;
 }
 .footer-icon{
-    color: #000000a7;
+    color: #333333;
     font-size: 30px;
     margin: 20px 0;
 }
 .navbar-icon{
-    color: #000000a7;
+    color: #333333;
     font-size: 20px;
 }
 .read-more{
