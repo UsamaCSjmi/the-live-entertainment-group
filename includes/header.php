@@ -65,11 +65,10 @@
                             <a class="nav-link" href="<?php echo SITE_PATH?>contact">Contact</a>
                         </li>
                     </ul>
-                    
                 </div>
                 <ul class="navbar-icons">
                     <li class="navbar-icon mx-3"><i class="fas fa-magnifying-glass"></i></li>
-                    <li class="navbar-icon mx-3"><i class="fas fa-heart"></i></li>
+                    <li class="navbar-icon mx-3"><i class="fas fa-heart" data-bs-toggle="modal" data-bs-target="#shortlist"></i></li>
                     <li class="navbar-icon mx-3"><i class="fas fa-user"></i></li>
                 </ul>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

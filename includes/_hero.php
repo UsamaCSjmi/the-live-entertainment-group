@@ -1,12 +1,31 @@
-
 <section class="hero d-flex flex-column align-item-center justify-content-center">
     <div class="container">
         <div class="banner-area text-center pt-5 pb-5">
-            <h1 class="text-light mx-auto">Hire Live Entertainment For Your Event</h1>
-            <ul class="tick-list text-light my-3" >
-                <li class="">The Home of the UKs best talent</li>
-                <li class="mt-3 mb-3">Over 15 years of experience in the events industry</li>
+            <?php 
+            if (isset($hero['title']) && $hero['title'] != ""){
+                ?>
+            <h1 class="text-light mx-auto"><?php echo $hero['title']?></h1>
+                <?php
+            }
+            if (isset($hero['list']) && $hero['list'] != ""){
+                ?>
+            <ul class="tick-list text-light my-3">
+                <?php
+                foreach ($hero['list'] as $li ){
+                    ?>
+                <li class="mt-3 mb-3"><?php echo $li?></li>
+                    <?php
+                }
+                ?>
             </ul>
+            <?php
+            }
+            if (isset($hero['text']) && $hero['text'] != ""){
+                ?>
+            <p class="text-light"><?php echo $hero['text']?></p>
+                <?php
+            }
+            ?>
             <div class="banner-search rounded-pill w-50 mx-auto">
                 <div class="w-100">
                     <div class="input-group">

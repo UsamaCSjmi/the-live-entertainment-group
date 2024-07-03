@@ -1,6 +1,15 @@
 <?php 
 include_once("includes/header.php");
+$breadcrumbs = [
+    "Home" => "",
+    "Function Bands" => "function-bands/",
+    "Solo Bands" =>"#"
+];
 include("includes/_breadcrumbs.php");
+$hero = [
+    "title" => "Sub Category Title 2 Lines Max",
+    "text" => "This is a short paragraph used to describe the category and provide some SEO value."
+];
 include("includes/_hero.php");
 include("includes/_artists-cards.php");
 include("includes/_genres.php");

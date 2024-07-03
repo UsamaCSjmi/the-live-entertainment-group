@@ -49,7 +49,8 @@ class Format
 
     public static function getRouter(){
         $request = $_SERVER['REQUEST_URI'];
-        $router = str_replace(BASE_PATH,'',$request);
+        // $router = str_replace(BASE_PATH,'',$request);
+        $router = substr_replace($request,'',0,strlen(BASE_PATH));
         $router = explode('/',$router);
         return $router;
     }

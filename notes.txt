@@ -31,3 +31,5 @@ Table parent_child_relation
 
 
 **one profile can exists in multiple categories
+
+** to store page content in database, Make content in stringify format of json data for various section of pages

@@ -1,5 +1,5 @@
     <!-- Footer Start -->
-    <div class="container-fluid text-dark footer mt-5 pt-0 pb-5 ">
+    <div class="container-fluid text-dark footer mt-5 pt-0">
         <div class="container py-5 border-top-dark border-bottom-dark">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6 mt-2 mt-lg-5">
@@ -82,12 +82,12 @@
             <div class="copyright">
                 <div class="row mt-2 justify-content-between">
                     <div class="col-lg-5">
-                        <a class="navbar-brand float-left" href="<?php echo SITE_PATH?>">
+                        <a class="navbar-brand float-left  d-flex align-items-center" href="<?php echo SITE_PATH?>">
                             <img src="<?php echo SITE_PATH?>assets/images/leg-logo.png" alt="Live Entertainment Group" width="250" class="img-fluid">
                         </a>
                     </div>
                     <div class="col-lg-2">
-                        <ul class="nav flex-row mx-auto">
+                        <ul class="nav  d-flex align-items-center sflex-row mx-auto">
                             <li>
                                 <a class="px-2" href="#"><i class="fab fa-youtube footer-icon"></i></a>
                             </li>
@@ -99,8 +99,8 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-lg-5 py-auto">
-                        <p class="py-auto">
+                    <div class="col-lg-5 d-flex align-items-center">
+                        <p>
                             &copy; Copyright 2024 Live Entertainment Group, All Rights Reserved
                         </p>
                     </div>
