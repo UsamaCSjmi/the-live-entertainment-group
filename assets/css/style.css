@@ -204,7 +204,8 @@ h1,h2,h3,.h1,.h2,.h3{
     background-color: transparent!important;
 }
 .card-big-icon{
-    font-size: 160px;
+    /* font-size: 160px; */
+    height: 160px;
     color: #000;
 }
 .text-grey{
