@@ -1,4 +1,7 @@
 <?php
+
+use function PHPSTORM_META\type;
+
 /**
  * Format Class
  */
@@ -99,5 +102,20 @@ class Format
         else{
             return false;
         }
+    }
+    public static function json_to_sorted_array($s){
+        $arr = json_decode($s,true);
+        $order = array();
+        foreach ($arr as $key => $val)
+        {
+            $order[$key] = $val['order'];
+        }
+        array_multisort($order, SORT_ASC, $arr);
+        return $arr;
+    }
+
+    public static function array_to_json($arr){
+        $s = json_encode($arr);
+        return $s;
     }
 }

@@ -1,4 +1,4 @@
-<section class="hero d-flex flex-column align-item-center justify-content-center">
+<section class="hero d-flex flex-column align-item-center justify-content-center" style="background: url(<?php echo SITE_PATH."/assets/images/".$hero['image']?>), #00000087;background-position: 100%;background-repeat: no-repeat;background-size: cover;background-blend-mode: darken;">
     <div class="container">
         <div class="banner-area text-center pt-5 pb-5">
             <?php 

@@ -53,11 +53,11 @@ header{
     content: var(--bs-breadcrumb-divider, ">");
 }
 .hero{
-    background: url(../images/background.jpeg),#00000087;
+    /* background: url(../images/background.jpeg),#00000087;
     background-position: 100%;
     background-repeat: no-repeat;
     background-size: cover;
-    background-blend-mode: darken;
+    background-blend-mode: darken; */
     min-height: 70vh;
 }
 

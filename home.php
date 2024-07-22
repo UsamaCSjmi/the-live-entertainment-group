@@ -7,7 +7,8 @@ $hero = [
         "The Home of the UKs best talent",
         "Over 15 years of experience in the events industry"
     ],
-    "text" => ""
+    "text" => "",
+    "image" => "background.jpeg"
 ];
 include("includes/_hero.php");
 include("includes/_category-cards.php");

@@ -1,6 +1,7 @@
 <?php
 include_once("./includes/header.php");
 include_once("./includes/navigation.php");
+include_once("../backend/helpers/Format.php");
 $message="";
 if(isset($_POST['add-category'])){
     $add = $categoryObj->catInsert($_POST['name'],$_POST['slug'],$_POST['title'],$_POST['description'],$_POST['content']);
@@ -39,6 +40,7 @@ if (isset($_GET['category']) && $_GET['category'] != "") {
         ";
     } else {
         $mode = "edit";
+        $content = Format::json_to_sorted_array($category['content']);
     }
 }
 ?>
@@ -55,6 +57,8 @@ if (isset($_GET['category']) && $_GET['category'] != "") {
             <div class="card mb-4">
                 <div class="card-body">
                     <form method="POST">
+
+                        <!-- Name -->
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="name">Category Name</label>
                             <div class="col-sm-10">
@@ -69,6 +73,8 @@ if (isset($_GET['category']) && $_GET['category'] != "") {
                                 placeholder="Enter Category name here" required/>
                             </div>
                         </div>
+
+                        <!-- Slug -->
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="slug">Category Slug</label>
                             <div class="col-sm-10">
@@ -83,6 +89,8 @@ if (isset($_GET['category']) && $_GET['category'] != "") {
                                 placeholder="Category Slug" />
                             </div>
                         </div>
+
+                        <!-- Meta Title -->
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="title">Meta Title</label>
                             <div class="col-sm-10">
@@ -97,6 +105,8 @@ if (isset($_GET['category']) && $_GET['category'] != "") {
                                 placeholder="Meta Title" />
                             </div>
                         </div>
+
+                        <!-- Meta Description -->
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="description">Meta Description</label>
                             <div class="col-sm-10">
@@ -107,18 +117,15 @@ if (isset($_GET['category']) && $_GET['category'] != "") {
                                 ?></textarea>
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="content">Content</label>
-                            <div class="col-sm-10">
-                                <textarea name="content" id="editor" rows="30">
-                                <?php
-                                if($mode == "edit"){
-                                     echo $category['content'];
-                                }
-                                ?>
-                                </textarea>
-                            </div>
-                        </div>
+                        
+                        <?php include("./includes/components/_hero.php")?>
+                        <?php include("./includes/components/_seo-text.php")?>
+                        <?php include("./includes/components/_subcategories.php")?>
+                        <?php include("./includes/components/_categories.php")?>
+                        <?php include("./includes/components/_video.php")?>
+                        <?php include("./includes/components/_faqs.php")?>
+                        
+
                         <div class="row justify-content-end">
                             <div class="col-sm-10">
                                 <?php

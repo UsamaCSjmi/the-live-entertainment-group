@@ -4,8 +4,10 @@ include_once("../backend/lib/Session.php");
 include_once("../backend/helpers/Format.php");
 include_once("../backend/classes/Category.php");
 include_once("../backend/classes/Subcategory.php");
+include_once("../backend/classes/Genre.php");
 $categoryObj = new Category();
 $subcategoryObj = new Subcategory();
+$genreObj = new Genre();
 $page = Format::getAdminPage();
 if($page != "login" && $page != "forgot-password"){
   Session::checkAdminSession();

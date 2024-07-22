@@ -1,11 +1,15 @@
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
+editors = document.querySelectorAll( '.editor' );
+editors.forEach(editor => {
+	ClassicEditor
+	.create( editor, {
 		// Editor configuration.
 	} )
 	.then( editor => {
 		window.editor = editor;
 	} )
 	.catch( handleSampleError );
+	
+});
 
 function handleSampleError( error ) {
 	const issueUrl = 'https://github.com/ckeditor/ckeditor5/issues';
